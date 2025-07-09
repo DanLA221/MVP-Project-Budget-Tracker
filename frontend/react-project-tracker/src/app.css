@@ -1,0 +1,353 @@
+#root {
+    max-width: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
+
+  .card {
+    padding: 2em;
+  }
+
+  .read-the-docs {
+    color: #888;
+  }
+
+  body {
+    background-image: url('./assets/Images/Home_Background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  nav {
+    display: flex;
+    justify-content: start;
+  }
+
+  .nav-link {
+    border: solid white;
+    border-radius: 8px;
+    padding: 2px;
+  }
+
+  .background {
+    display: flex;
+    backdrop-filter: blur(8px);
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    padding: 2rem;
+    margin: 2rem;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .background::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .content-container {
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    }
+
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .semi-transparent-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 80%;
+    max-width: 200px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    transition: all 0.3s ease-out;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    border: 2px solid #e7e7e7;
+    border-radius: 4px;
+    padding: .5rem;
+  }
+
+  .project-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .project-card h2,
+  p {
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Project Detail Page*/
+
+  .project-detail-wrapper {
+    display: flex;
+    font-family: "Raleway", sans-serif;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+
+  .project-detail-container {
+    position: relative;
+    z-index: 1;
+    flex: 2;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+  .chart-container {
+    flex: 1 1 0;
+    min-width: 400px;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
+
+  .budget-card {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    color: black;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-fill.green {
+    background-color: #4caf50;
+  }
+
+  .progress-fill.red {
+    background-color: #f44336;
+  }
+
+  .budget-totals,
+  .project-totals {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  .edit-delete-project-buttons {
+  display: flex;
+  justify-content: space-between;}
+
+
+  .delete-project-button {
+    margin-left: 10px;
+    background-color: #ff5c5c;
+    color: white;
+    font-weight: 500;
+    font-size: 1em;
+    border: none;
+    padding: 0.6em 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+  }
+
+  .delete-project-button:hover {
+    background-color: #e60000;
+  }
+
+
+  /* Create Project Page*/
+
+  .create-project-container {
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+  .create-project-form {
+    display: grid;
+    grid-template-rows: repeat(1fr, 4);
+    gap: 1rem;
+  }
+
+  .create-project-form input {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+
+  /* Edit Project Page*/
+
+  .edit-project-container {
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+  .edit-project-form {
+    display: grid;
+    grid-template-rows: repeat(1fr, 4);
+    gap: 1rem;
+  }
+
+  .edit-project-form input {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .budget-section {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .budget-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .delete-budget-button {
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .delete-budget-button:hover {
+    background-color: #e60000;
+  }
+
+  .project-header-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .expense-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  }
+
+  .expense-header-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  }
+
+  .expense-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  }
+
+  .add-expense-button {
+  margin-top: 1rem;
+  align-self: start;
+  }
+
+
+  .delete-expense-button {
+    margin-left: 10px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .delete-expense-button:hover {
+    background-color: #e60000;
+  }
+
+  .add-budget-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .save-project-button {
+    margin-top: 2rem;
+  }
