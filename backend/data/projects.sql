@@ -1,11 +1,18 @@
 DROP TABLE IF EXISTS expense;
 DROP TABLE IF EXISTS budget;
 DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS users;
 
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    hashed_password VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    user_id INT REFERENCES users(id) NOT NULL
 );
 
 CREATE TABLE budget (
@@ -21,11 +28,6 @@ CREATE TABLE expense (
     estimate FLOAT NOT NULL,
     actual FLOAT
 );
-
-INSERT INTO project(id, name)
-VALUES
-    (1, 'Project 1'),
-    (2, 'Project 2');
 
 -- run the following line in the psql shell to load this file
 -- \i data/projects.sql

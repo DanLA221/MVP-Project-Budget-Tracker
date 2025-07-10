@@ -4,10 +4,22 @@ from sqlalchemy.orm import declarative_base, relationship
 Base = declarative_base()
 
 
+class DBUser(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    email = Column(String, unique=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    projects = relationship(
+        "DBProject", back_populates="user", cascade="all, delete-orphan"
+    )
+
+
 class DBProject(Base):
     __tablename__ = "project"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user = relationship("DBUser", back_populates="projects")
     budgets = relationship(
         "DBBudget", back_populates="project", cascade="all, delete-orphan"
     )

@@ -9,9 +9,14 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 
 
-def get_projects() -> list[ProjectOut]:
+def get_projects(user_id: int) -> list[ProjectOut]:
     db = SessionLocal()
-    db_projects = db.query(DBProject).order_by(DBProject.name).all()
+    db_projects = (
+        db.query(DBProject)
+        .filter(DBProject.user_id == user_id)
+        .order_by(DBProject.name)
+        .all()
+    )
     projects = []
     for db_project in db_projects:
         projects.append(
@@ -25,16 +30,17 @@ def get_projects() -> list[ProjectOut]:
     return projects
 
 
-def get_project(project_id: int) -> ProjectOut | None:
+def get_project(project_id: int, user_id: int) -> ProjectOut | None:
     db = SessionLocal()
     db_project = (
         db.query(DBProject)
         .options(joinedload(DBProject.budgets).joinedload(DBBudget.expenses))
-        .filter(DBProject.id == project_id)
+        .filter(DBProject.id == project_id, DBProject.user_id == user_id)
         .first()
     )
 
     if db_project is None:
+        db.close()
         return None
 
     project = ProjectOut(
@@ -59,9 +65,9 @@ def get_project(project_id: int) -> ProjectOut | None:
     return project
 
 
-def create_project(project: ProjectCreate) -> ProjectOut:
+def create_project(project: ProjectCreate, user_id: int) -> ProjectOut:
     db = SessionLocal()
-    db_new_project = DBProject(**project.model_dump())
+    db_new_project = DBProject(**project.model_dump(), user_id=user_id)
     db.add(db_new_project)
     db.commit()
     db.refresh(db_new_project)
@@ -74,9 +80,13 @@ def create_project(project: ProjectCreate) -> ProjectOut:
     return new_project
 
 
-def delete_project(project_id: int) -> bool:
+def delete_project(project_id: int, user_id: int) -> bool:
     db = SessionLocal()
-    db_project = db.query(DBProject).filter(DBProject.id == project_id).first()
+    db_project = (
+        db.query(DBProject)
+        .filter(DBProject.id == project_id, DBProject.user_id == user_id)
+        .first()
+    )
     if not db_project:
         db.close()
         return False
@@ -96,9 +106,15 @@ def delete_project(project_id: int) -> bool:
     return True
 
 
-def update_project(project_id: int, project_data: ProjectUpdate) -> ProjectOut | None:
+def update_project(
+    project_id: int, user_id: int, project_data: ProjectUpdate
+) -> ProjectOut | None:
     db = SessionLocal()
-    db_project = db.query(DBProject).filter(DBProject.id == project_id).first()
+    db_project = (
+        db.query(DBProject)
+        .filter(DBProject.id == project_id, DBProject.user_id == user_id)
+        .first()
+    )
     if db_project is None:
         db.close()
         return None
