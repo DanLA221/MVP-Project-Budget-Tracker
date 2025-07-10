@@ -1,5 +1,4 @@
 import React from "react";
-import "./ProjectCard.css";
 import { Link } from "react-router";
 
 const ProjectCard = ({ project }) => {

@@ -38,11 +38,6 @@ const Home = () => {
     return (
      <div className="background">
          <div className="content-container">
-      <nav>
-        <NavLink className="nav-link semi-transparent-button" to="/" end>
-          Home
-        </NavLink>
-      </nav>
       <h1 className="header">Project Budget Tracker</h1>
       <div className="project-container">
                 <button onClick={handleAddProjectClick} className="add-button">

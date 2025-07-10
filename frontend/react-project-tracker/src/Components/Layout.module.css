@@ -1,0 +1,65 @@
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbarContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .navLinks {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .link {
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+
+  .link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .active {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .mainContent {
+    flex: 1;
+    padding: 1.5rem;
+  }
+
+  .footer {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
