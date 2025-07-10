@@ -99,11 +99,6 @@ return (
     <div className="background">
       <div className="project-detail-wrapper">
     <div className="project-detail-container">
-      <nav>
-        <NavLink className="nav-link semi-transparent-button" to="/" end>
-          Home
-        </NavLink>
-      </nav>
       <h2>{project.name}</h2>
       <div className="edit-delete-project-buttons">
         <button onClick={handleEditProjectClick} className="edit-project-button">

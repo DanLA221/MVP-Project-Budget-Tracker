@@ -94,11 +94,6 @@ async function submitForm(e) {
     return (
         <div className="background">
         <div className="edit-project-container">
-        <nav>
-        <NavLink className="nav-link semi-transparent-button" to="/" end>
-          Home
-        </NavLink>
-      </nav>
             <h2>Edit Project</h2>
             {error && <p>{error}</p>}
             <form onSubmit={submitForm} className="edit-project-form">

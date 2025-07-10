@@ -25,11 +25,6 @@ export default function CreateProject() {
     return (
         <div className="background">
         <div className="create-project-container">
-            <nav>
-        <NavLink className="nav-link semi-transparent-button" to="/" end>
-          Home
-        </NavLink>
-      </nav>
             <h2>Create Project</h2>
             {error && <p>{error}</p>}
             <form
