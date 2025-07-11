@@ -4,7 +4,8 @@ from schemas import UserCreate, Token
 from db_models import DBUser
 from db import SessionLocal
 from auth_utils import get_password_hash, verify_password, create_access_token
-from auth import get_current_user
+from config import ACCESS_TOKEN_EXPIRE_MINUTES
+from datetime import timedelta
 
 router = APIRouter()
 
@@ -30,7 +31,8 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    token = create_access_token({"sub": new_user.email})
+    expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    token = create_access_token({"sub": new_user.email}, expires_delta=expires)
     return {"access_token": token, "token_type": "bearer"}
 
 

@@ -4,11 +4,11 @@ import { useAuth } from "../Context/AuthContext";
 
 
 export default function Signup() {
-    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [error, setError] = useState(null);
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     async function handleSubmit(e) {

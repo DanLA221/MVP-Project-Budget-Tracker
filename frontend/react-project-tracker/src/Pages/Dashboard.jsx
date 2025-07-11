@@ -9,22 +9,23 @@ import { useAuth } from "../Context/AuthContext";
 export default function Dashboard() {
     const [projects, setProjects] = useState([]);
     const [error, setError] = useState(null);
+    const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+        if (!isAuthenticated) return;
 
         async function fetchProjects() {
             const result = await getProjects();
             if (result instanceof Error) {
                 setError(result);
-            } else {
-                setProjects(result.sort((a, b) => a.id - b.id));
+                return;
+            }
+            setProjects(result.sort((a, b) => a.id - b.id));
         }
-    }
-    fetchProjects();
-    }, []);
+
+        fetchProjects();
+    }, [isAuthenticated]);
 
     const handleAddProjectClick = () => {
         navigate("/create");

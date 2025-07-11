@@ -2,10 +2,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import styles from "./Layout.module.css";
 import { useAuth } from "../Context/AuthContext";
 
-const { login, logout, isAuthenticated, token } = useAuth();
-
 const Layout = () => {
-    const { user } = useUser();
+    const { login, logout, isAuthenticated, token } = useAuth();
 
   return (
     <div className={styles.appContainer}>
@@ -19,7 +17,9 @@ const Layout = () => {
                     <NavLink to="/about" className={({ isActive }) => isActive ? styles.active : styles.link}>
                         About
                     </NavLink>
-                    {!user && (
+                    {isAuthenticated ? (
+                        <button onClick={logout} className={styles.link}>Logout</button>
+                    ) : (
                         <>
                             <NavLink to="/login" className={styles.link}>Login</NavLink>
                             <NavLink to="/signup" className={styles.link}>Signup</NavLink>
