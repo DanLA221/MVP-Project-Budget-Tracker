@@ -3,7 +3,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const { login } = useUser();
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ export default function Login() {
         try {
             const res = await fetch("http://localhost:8000/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({
+                headers: {"Content-Type": "application/json" },
+                body: JSON.stringify({
                     email,
                     password,
                 }),
@@ -26,8 +26,8 @@ export default function Login() {
             const data = await res.json();
             const token = data.access_token;
 
-            login({ user: { email }, token });
-            navigate("/");
+            login(token);
+            navigate("/dashboard");
         } catch (err) {
             setError("Invalid credentials");
         }

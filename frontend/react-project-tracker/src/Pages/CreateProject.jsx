@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createProject } from "./api";
 
 export default function CreateProject() {
@@ -19,7 +19,7 @@ export default function CreateProject() {
             setError("Couldn't add the project try again later");
             return;
         }
-        navigate("/");
+        navigate("/dashboard");
     }
 
     return (

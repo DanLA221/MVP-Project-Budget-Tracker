@@ -1,19 +1,26 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Link } from "react-router-dom";
 import styles from "./Layout.module.css";
 import { useAuth } from "../Context/AuthContext";
 
 const Layout = () => {
-    const { login, logout, isAuthenticated, token } = useAuth();
+    const { logout, isAuthenticated } = useAuth();
 
   return (
     <div className={styles.appContainer}>
         <header className={styles.navbar}>
             <div className={styles.navbarContent}>
-                <div className={styles.logo}>Project Budget Tracker</div>
+                <div className={styles.logo}>
+                    <Link to="/" className={styles.link}>
+                        Project Budget Tracker
+                    </Link>
+                </div>
+
                 <nav className={styles.navLinks}>
-                    <NavLink to="/" className={({ isActive }) => isActive ? styles.active : styles.link}>
-                        Home
-                    </NavLink>
+                    {isAuthenticated && (
+                        <NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : styles.link}>
+                            Dashboard
+                        </NavLink>
+                    )}
                     <NavLink to="/about" className={({ isActive }) => isActive ? styles.active : styles.link}>
                         About
                     </NavLink>
