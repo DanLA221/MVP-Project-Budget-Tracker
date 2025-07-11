@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../Context/AuthContext";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { getProject } from "./api";
 import { deleteProject } from "./api";

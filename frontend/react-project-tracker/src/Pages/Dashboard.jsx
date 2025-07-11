@@ -3,7 +3,8 @@ import '../App.css';
 import './Dashboard.css';
 import { useEffect, useState } from "react";
 import { getProjects } from "./api";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../Components/ProjectCard";
+import { useAuth } from "../Context/AuthContext";
 
 export default function Dashboard() {
     const [projects, setProjects] = useState([]);
@@ -11,6 +12,9 @@ export default function Dashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
         async function fetchProjects() {
             const result = await getProjects();
             if (result instanceof Error) {

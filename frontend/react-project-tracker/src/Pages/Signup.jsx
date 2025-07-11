@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
+
 
 export default function Signup() {
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
@@ -24,14 +27,13 @@ export default function Signup() {
                 body: JSON.stringify({ email, password }),
             });
 
+            const data = await res.json();
+
             if (!res.ok) {
-                const data = await res.json();
                 throw new Error(data.detail || "Signup failed");
             }
 
-            const data = await res.json();
-            localStorage.setItem("token", data.access_token);
-
+            login(data.access_token);
             navigate("/dashboard");
         } catch (err) {
             setError(err.message);

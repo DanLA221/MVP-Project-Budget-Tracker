@@ -1,4 +1,5 @@
 import '../App.css';
+import { useAuth } from '../Context/AuthContext.jsx';
 
 
 export default function Home() {

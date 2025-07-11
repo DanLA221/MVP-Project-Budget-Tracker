@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { getProject, editProject } from "./api";
+import { useAuth } from "../Context/AuthContext";
 
 export default function EditProject() {
     const { projectId } = useParams();
